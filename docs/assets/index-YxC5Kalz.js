@@ -98,8 +98,8 @@ G = Enter
 `).map(t=>t.split("=").map(r=>r.trim())));document.querySelector("#root").innerHTML=`
   <div id="app">
   <a href="https://capslockx.snomiao.com" target="_blank">
-    <img src="/XIconBlue.png" class="logo" alt="CapsLockX White logo" />
-    <img src="/XIconWhite.png" class="logo" alt="CapsLockX Blue logo" />
+    <img src="./XIconBlue.png" class="logo" alt="CapsLockX White logo" />
+    <img src="./XIconWhite.png" class="logo" alt="CapsLockX Blue logo" />
   </a>
   <h1>Try CapsLockX</h1>
   <hr />
