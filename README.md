@@ -1,3 +1,0 @@
-# Enjoy CapsLockX
-
-Enjoy CapsLockX
