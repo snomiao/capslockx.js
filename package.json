@@ -1,14 +1,14 @@
 {
   "name": "capslockx.js",
-  "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "files": ["dist"],
   "scripts": {
     "dev": "vite",
     "build:docs": "tsc && vite build",
     "build": "tsc && bun build src/index.ts --outdir=dist",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "release": "bun run build && npm version patch && npm publish"
   },
   "devDependencies": {
     "typescript": "^5.2.2",
