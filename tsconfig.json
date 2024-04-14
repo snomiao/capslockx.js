@@ -11,7 +11,11 @@
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
+    // "noEmit": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+  "outDir": "./dist",
+"skipDefaultLibCheck": true,
 
     /* Linting */
     "strict": true,
@@ -19,5 +23,5 @@
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"]
+  "include": ["src"],
 }

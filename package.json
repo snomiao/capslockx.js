@@ -1,11 +1,13 @@
 {
-  "name": "main",
+  "name": "capslockx.js",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "files": ["dist"],
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build:docs": "tsc && vite build",
+    "build": "tsc && bun build src/index.ts --outdir=dist",
     "preview": "vite preview"
   },
   "devDependencies": {
