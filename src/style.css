@@ -39,7 +39,7 @@ kbd span {
   /* @apply; */
 }
 .cursor {
-  @apply fixed left-0 top-0;
+  @apply fixed left-0 top-0 pointer-events-none;
 }
 .keys-list > div {
   @apply flex items-center gap-1;
