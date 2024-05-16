@@ -26,7 +26,7 @@ export function MonoAccModel(
       if (!a) v *= 0.5 ** (dt / (halflife / 1000));
 
       // const e = [v, a].map(Math.abs).reduce((a, b) => a + b);
-      status("tick " + JSON.stringify([x, v, a, dt, this.done], null, 2));
+      // status("tick " + JSON.stringify([x, v, a, dt, this.done], null, 2));
       if (Math.abs(v) <= 0.01 && a === 0) {
         v = a = 0;
         return (this.done = true);
