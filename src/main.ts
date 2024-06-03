@@ -2,8 +2,8 @@ import "./style.css";
 import userEvent from "@testing-library/user-event";
 import { MouseButton } from "@testing-library/user-event/dist/cjs/system/pointer/buttons.js";
 import { MouseButtonControl } from "./MouseButtonControl";
-import { Ticker } from "./Ticker";
-import { AccModel2D } from "./AccModel2D";
+import { Ticker } from "../model/Ticker";
+import { AccModel2D } from "../model/AccModel2D";
 main();
 
 function main() {
@@ -35,7 +35,7 @@ G = Enter
 `
       .trim()
       .split("\n")
-      .map((e) => e.split("=").map((e) => e.trim()))
+      .map((e) => e.split("=").map((e) => e.trim())),
   );
   document.querySelector<HTMLDivElement>("#root")!.innerHTML = `
   <div id="app">
@@ -126,8 +126,8 @@ function CapsLockX(root = document.documentElement) {
           textarea.selectionStart += dx;
         }
       },
-      { speed: 20, halflife: 200 }
-    )
+      { speed: 20, halflife: 200 },
+    ),
   );
   const pageControl = Ticker(
     AccModel2D(
@@ -137,8 +137,8 @@ function CapsLockX(root = document.documentElement) {
         dy < 0 && userEvent.keyboard("[PageUp]".repeat(Math.abs(dy)));
         dy > 0 && userEvent.keyboard("[PageDown]".repeat(Math.abs(dy)));
       },
-      { speed: 12, halflife: 10 }
-    )
+      { speed: 12, halflife: 10 },
+    ),
   );
   const mouseControl = Ticker(
     AccModel2D(
@@ -148,8 +148,8 @@ function CapsLockX(root = document.documentElement) {
           Math.max(screen.width, screen.height) /
           (window.screen.availWidth / window.visualViewport!.width),
         halflife: 50,
-      }
-    ) // min of screen [width,height]
+      },
+    ), // min of screen [width,height]
   );
   const scrollControl = Ticker(
     AccModel2D(
@@ -162,8 +162,8 @@ function CapsLockX(root = document.documentElement) {
       },
       {
         speed: Math.min(screen.width, screen.height),
-      }
-    ) // min of screen [width,height]
+      },
+    ), // min of screen [width,height]
   );
   const tabModel = Ticker(
     AccModel2D(
@@ -173,8 +173,8 @@ function CapsLockX(root = document.documentElement) {
       {
         speed: 5,
         halflife: 50,
-      }
-    ) // min of screen [width,height]
+      },
+    ), // min of screen [width,height]
   );
 
   const app = document.querySelector<HTMLDivElement>("#app")!;
@@ -316,7 +316,7 @@ function DispatchTab(step = 1) {
     return;
   }
   const currentIndex = tabElements.findIndex(
-    (e) => e === document.activeElement
+    (e) => e === document.activeElement,
   );
   const nextIndex = (currentIndex + step) % tabElements.length;
   tabElements[nextIndex].focus();

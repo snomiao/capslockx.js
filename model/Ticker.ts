@@ -1,5 +1,5 @@
-export function Ticker<Model extends { tick: (dt: number) => boolean | void; }>(
-  model: Model
+export function Ticker<Model extends { tick: (dt: number) => boolean | void }>(
+  model: Model,
 ) {
   let { st = 0, id = NaN } = {};
   return Object.assign(model, {

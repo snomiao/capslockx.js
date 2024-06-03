@@ -2,4 +2,10 @@
 
 Keyboard to Mouse/Caret/Motion controller.
 
-CapsLockX.js
+## Try CapsLockX Here - [Try CapsLockX](https://snomiao.github.io/capslockx.js/)
+
+## Development
+
+```
+import 'capslockx.js'
+```

@@ -1,11 +1,7 @@
-export function MonoAccModel(
+export function AccModel1D(
   onMove: (d: number) => void,
-  { speed = 1, halflife = 50 } = {}
+  { speed = 1, halflife = 50 } = {},
 ) {
-  const container = document.createElement("div");
-  document.querySelector("main")?.appendChild(container);
-  const status = (msg: string) => (container.innerHTML = msg);
-
   let { x = 0, v = 0, a = 0 } = {};
   return {
     onMove,

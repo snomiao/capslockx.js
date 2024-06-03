@@ -1,8 +1,7 @@
 import { fireEvent } from "@testing-library/dom";
 import { MouseButton } from "@testing-library/user-event/dist/cjs/system/pointer/buttons.js";
 
-
-export function MouseButtonControl(cursor: { x: number; y: number; }) {
+export function MouseButtonControl(cursor: { x: number; y: number }) {
   let el: HTMLElement | undefined = undefined;
   let pressed: Partial<Record<MouseButton, number>> = {};
 
@@ -13,10 +12,12 @@ export function MouseButtonControl(cursor: { x: number; y: number; }) {
         .reverse()
         .find((e) => {
           const rect = e.getBoundingClientRect();
-          if (rect.left < cursor.x &&
+          if (
+            rect.left < cursor.x &&
             cursor.x < rect.right &&
             rect.top < cursor.y &&
-            cursor.y < rect.bottom)
+            cursor.y < rect.bottom
+          )
             return true;
         });
       // press

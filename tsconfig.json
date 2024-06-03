@@ -14,8 +14,8 @@
     // "noEmit": true,
     "declaration": true,
     "emitDeclarationOnly": true,
-  "outDir": "./dist",
-"skipDefaultLibCheck": true,
+    "outDir": "./dist",
+    "skipDefaultLibCheck": true,
 
     /* Linting */
     "strict": true,
@@ -23,5 +23,5 @@
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": ["src", "model"]
 }
