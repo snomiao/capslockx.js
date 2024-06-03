@@ -1,6 +1,6 @@
-export declare function Ticker<Model extends {
+export declare function Ticker<Tickable extends {
     tick: (dt: number) => boolean | void;
-}>(model: Model): Model & {
+}>(model: Tickable): Tickable & {
     start(): true;
     ticker(): true | undefined;
     end(): true;

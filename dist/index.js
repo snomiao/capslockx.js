@@ -1,5 +1,5 @@
-// model/AccModel1D.ts
-function AccModel1D(onMove, { speed = 1, halflife = 50 } = {}) {
+// model/AccModel0D.ts
+function AccModel0D(onMove, { speed = 1, halflife = 50, stopV = 0.01 } = {}) {
   let { x = 0, v = 0, a = 0 } = {};
   return {
     onMove,
@@ -14,7 +14,7 @@ function AccModel1D(onMove, { speed = 1, halflife = 50 } = {}) {
         this.onMove(d);
       if (!a)
         v *= 0.5 ** (dt / (halflife / 1000));
-      if (Math.abs(v) <= 0.01 && a === 0) {
+      if (Math.abs(v) <= stopV && a === 0) {
         v = a = 0;
         return this.done = true;
       }
@@ -26,8 +26,35 @@ function AccModel1D(onMove, { speed = 1, halflife = 50 } = {}) {
     done: true
   };
 }
+// model/AccModel1D.ts
+function AccModel1D(onMove, opts = {}) {
+  let { x = 0, y = 0 } = {};
+  return {
+    done: true,
+    stop() {
+      this.release();
+      x = y = 0;
+    },
+    tick(dt) {
+      !this.left.done && this.left.tick(dt);
+      !this.right.done && this.right.tick(dt);
+      const xdone = this.left.done && this.right.done;
+      this.done = xdone;
+      const { dx = x | 0, dy = y | 0 } = {};
+      onMove(dx, dy);
+      x -= dx, y -= dy;
+      return this.done;
+    },
+    left: AccModel0D((d) => x -= d, opts),
+    right: AccModel0D((d) => x += d, opts),
+    release() {
+      this.left.release();
+      this.right.release();
+    }
+  };
+}
 // model/AccModel2D.ts
-function AccModel2D(onMove, { speed = 1, halflife = 50 } = {}) {
+function AccModel2D(onMove, opts = {}) {
   let { x = 0, y = 0 } = {};
   return {
     done: true,
@@ -48,10 +75,10 @@ function AccModel2D(onMove, { speed = 1, halflife = 50 } = {}) {
       x -= dx, y -= dy;
       return this.done;
     },
-    left: AccModel1D((d) => x -= d, { speed, halflife }),
-    right: AccModel1D((d) => x += d, { speed, halflife }),
-    up: AccModel1D((d) => y -= d, { speed, halflife }),
-    down: AccModel1D((d) => y += d, { speed, halflife }),
+    left: AccModel0D((d) => x -= d, opts),
+    right: AccModel0D((d) => x += d, opts),
+    up: AccModel0D((d) => y -= d, opts),
+    down: AccModel0D((d) => y += d, opts),
     release() {
       this.left.release();
       this.right.release();
@@ -61,7 +88,7 @@ function AccModel2D(onMove, { speed = 1, halflife = 50 } = {}) {
   };
 }
 // model/AccModel3D.ts
-function AccModel3D(onMove, { speed = 1, halflife = 50 } = {}) {
+function AccModel3D(onMove, opts = {}) {
   let { x = 0, y = 0, z = 0 } = {};
   return {
     done: true,
@@ -85,12 +112,12 @@ function AccModel3D(onMove, { speed = 1, halflife = 50 } = {}) {
       x -= dx, y -= dy, z -= dz;
       return this.done;
     },
-    left: AccModel1D((d) => x -= d, { speed, halflife }),
-    right: AccModel1D((d) => x += d, { speed, halflife }),
-    up: AccModel1D((d) => y -= d, { speed, halflife }),
-    down: AccModel1D((d) => y += d, { speed, halflife }),
-    fore: AccModel1D((d) => z -= d, { speed, halflife }),
-    back: AccModel1D((d) => z += d, { speed, halflife }),
+    left: AccModel0D((d) => x -= d, opts),
+    right: AccModel0D((d) => x += d, opts),
+    up: AccModel0D((d) => y -= d, opts),
+    down: AccModel0D((d) => y += d, opts),
+    fore: AccModel0D((d) => z -= d, opts),
+    back: AccModel0D((d) => z += d, opts),
     release() {
       this.left.release();
       this.right.release();
@@ -132,5 +159,6 @@ export {
   Ticker,
   AccModel3D,
   AccModel2D,
-  AccModel1D
+  AccModel1D,
+  AccModel0D
 };

@@ -1,7 +1,5 @@
-export declare function AccModel3D(onMove: (dx: number, dy: number, dz: number) => void, { speed, halflife }?: {
-    speed?: number | undefined;
-    halflife?: number | undefined;
-}): {
+import { AccModelOptions } from "./AccModel0D";
+export declare function AccModel3D(onMove: (dx: number, dy: number, dz: number) => void, opts?: AccModelOptions): {
     done: boolean;
     stop(): void;
     tick(dt: number): boolean;

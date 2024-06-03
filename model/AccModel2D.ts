@@ -1,8 +1,8 @@
-import { AccModel1D } from "./AccModel1D";
+import { AccModel0D, AccModelOptions } from "./AccModel0D";
 
 export function AccModel2D(
   onMove: (dx: number, dy: number) => void,
-  { speed = 1, halflife = 50 } = {},
+  opts: AccModelOptions = {},
 ) {
   let { x = 0, y = 0 } = {};
   return {
@@ -27,10 +27,10 @@ export function AccModel2D(
       // done
       return this.done;
     },
-    left: AccModel1D((d) => (x -= d), { speed, halflife }),
-    right: AccModel1D((d) => (x += d), { speed, halflife }),
-    up: AccModel1D((d) => (y -= d), { speed, halflife }),
-    down: AccModel1D((d) => (y += d), { speed, halflife }),
+    left: AccModel0D((d) => (x -= d), opts),
+    right: AccModel0D((d) => (x += d), opts),
+    up: AccModel0D((d) => (y -= d), opts),
+    down: AccModel0D((d) => (y += d), opts),
     release() {
       this.left.release();
       this.right.release();

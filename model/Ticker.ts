@@ -1,6 +1,6 @@
-export function Ticker<Model extends { tick: (dt: number) => boolean | void }>(
-  model: Model,
-) {
+export function Ticker<
+  Tickable extends { tick: (dt: number) => boolean | void },
+>(model: Tickable) {
   let { st = 0, id = NaN } = {};
   return Object.assign(model, {
     start() {
@@ -8,7 +8,6 @@ export function Ticker<Model extends { tick: (dt: number) => boolean | void }>(
       this.done = false;
       st = 0;
       this.ticker();
-      // id = setInterval(() => this.ticker(), 16);
       return true;
     },
     ticker() {
@@ -19,7 +18,6 @@ export function Ticker<Model extends { tick: (dt: number) => boolean | void }>(
       id = setTimeout(() => this.ticker(), 7);
     },
     end() {
-      // clearInterval(id), (id = NaN);
       clearTimeout(id), (id = NaN);
       return (this.done = true);
     },

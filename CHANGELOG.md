@@ -4,11 +4,10 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [0.1.2](https://github.com/snomiao/capslockx.js/compare/v0.1.1...v0.1.2) (2024-06-03)
 
-
 ### Features
 
-* **accmodel:** 3d ([f406963](https://github.com/snomiao/capslockx.js/commit/f4069634ed0924cd0beb256fd516af7ce3f7fdd2))
-* **main:** acmodel 3d ([2870b7d](https://github.com/snomiao/capslockx.js/commit/2870b7d518c1e7a911ac6964320292e1279ff9ab))
+- **accmodel:** 3d ([f406963](https://github.com/snomiao/capslockx.js/commit/f4069634ed0924cd0beb256fd516af7ce3f7fdd2))
+- **main:** acmodel 3d ([2870b7d](https://github.com/snomiao/capslockx.js/commit/2870b7d518c1e7a911ac6964320292e1279ff9ab))
 
 ### [0.1.1](https://github.com/snomiao/capslockx.js/compare/v0.0.4...v0.1.1) (2024-06-03)
 

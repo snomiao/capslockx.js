@@ -1,8 +1,8 @@
-import { AccModel1D } from "./AccModel1D";
+import { AccModel0D, AccModelOptions } from "./AccModel0D";
 
 export function AccModel3D(
   onMove: (dx: number, dy: number, dz: number) => void,
-  { speed = 1, halflife = 50 } = {},
+  opts: AccModelOptions = {},
 ) {
   let { x = 0, y = 0, z = 0 } = {};
   return {
@@ -31,12 +31,12 @@ export function AccModel3D(
       return this.done;
     },
     // right hand coordinate system
-    left: AccModel1D((d) => (x -= d), { speed, halflife }),
-    right: AccModel1D((d) => (x += d), { speed, halflife }),
-    up: AccModel1D((d) => (y -= d), { speed, halflife }),
-    down: AccModel1D((d) => (y += d), { speed, halflife }),
-    fore: AccModel1D((d) => (z -= d), { speed, halflife }),
-    back: AccModel1D((d) => (z += d), { speed, halflife }),
+    left: AccModel0D((d) => (x -= d), opts),
+    right: AccModel0D((d) => (x += d), opts),
+    up: AccModel0D((d) => (y -= d), opts),
+    down: AccModel0D((d) => (y += d), opts),
+    fore: AccModel0D((d) => (z -= d), opts),
+    back: AccModel0D((d) => (z += d), opts),
     release() {
       this.left.release();
       this.right.release();

@@ -1,37 +1,34 @@
+import { AccModel0D, AccModelOptions } from "./AccModel0D";
+
 export function AccModel1D(
-  onMove: (d: number) => void,
-  { speed = 1, halflife = 50 } = {},
+  onMove: (dx: number, dy: number) => void,
+  opts: AccModelOptions = {},
 ) {
-  let { x = 0, v = 0, a = 0 } = {};
+  let { x = 0, y = 0 } = {};
   return {
-    onMove,
-    tick(dt: number) {
-      this.done = false;
-      // rush
-      if (!dt) return this.onMove(1);
-
-      // acc
-      x += dt * (v += dt * a * Math.E ** dt);
-
-      // to int
-      const d = x | 0;
-      x -= d;
-      if (d) this.onMove(d);
-
-      // friction
-      if (!a) v *= 0.5 ** (dt / (halflife / 1000));
-
-      // const e = [v, a].map(Math.abs).reduce((a, b) => a + b);
-      // status("tick " + JSON.stringify([x, v, a, dt, this.done], null, 2));
-      if (Math.abs(v) <= 0.01 && a === 0) {
-        v = a = 0;
-        return (this.done = true);
-      }
-    },
-    press() {
-      (a = speed), (this.done = false);
-    },
-    release: () => (a = 0),
     done: true,
+    stop() {
+      this.release();
+      x = y = 0;
+    },
+    tick(dt: number) {
+      // accu
+      !this.left.done && this.left.tick(dt);
+      !this.right.done && this.right.tick(dt);
+      const xdone = this.left.done && this.right.done;
+      this.done = xdone;
+      // output
+      const { dx = x | 0, dy = y | 0 } = {};
+      onMove(dx, dy);
+      (x -= dx), (y -= dy);
+      // done
+      return this.done;
+    },
+    left: AccModel0D((d) => (x -= d), opts),
+    right: AccModel0D((d) => (x += d), opts),
+    release() {
+      this.left.release();
+      this.right.release();
+    },
   };
 }

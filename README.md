@@ -1,4 +1,4 @@
-# capslockx.js
+# CapsLockX.js
 
 Keyboard to Mouse/Caret/Motion controller.
 
