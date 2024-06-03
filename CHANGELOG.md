@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.3](https://github.com/snomiao/capslockx.js/compare/v0.1.2...v0.1.3) (2024-06-03)
+
+
+### Features
+
+* **main:** model0123D ([f77c3dc](https://github.com/snomiao/capslockx.js/commit/f77c3dc6082ea8729ebbec7594cb08493e6851e5))
+
 ### [0.1.2](https://github.com/snomiao/capslockx.js/compare/v0.1.1...v0.1.2) (2024-06-03)
 
 ### Features
