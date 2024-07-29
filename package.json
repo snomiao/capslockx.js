@@ -1,6 +1,18 @@
 {
-  "name": "capslockx.js",
-  "version": "0.1.3",
+  "name": "capslockx",
+  "version": "0.1.4",
+  "description": "Keyboard to Mouse/Caret/Motion controller.",
+  "keywords": [],
+  "homepage": "https://github.com/snomiao/capslockx.js#readme",
+  "bugs": {
+    "url": "https://github.com/snomiao/capslockx.js/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snomiao/capslockx.js.git"
+  },
+  "license": "MIT",
+  "author": "snomiao <snomiao@gmail.com>",
   "type": "module",
   "exports": {
     "import": "./index.js"
@@ -8,15 +20,23 @@
   "main": "index.js",
   "module": "index.js",
   "types": "index.ts",
+  "directories": {
+    "doc": "docs",
+    "example": "examples"
+  },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsc && bun build src/index.ts --outdir=dist",
+    "_build": "tsc && bun build src/index.ts  --outdir=dist",
+    "build": "bun build index.ts --outdir=dist && bun build:umd",
     "build:docs": "tsc && vite build",
+    "build:umd": "bunx rollup dist/index.js --file dist/index.umd.js --format umd --name \"capslockx\"",
     "dev": "vite",
     "preview": "vite preview",
-    "release": "bun run build && npm version patch && npm publish"
+    "prerelease": "bun run build && bun run test",
+    "release": "bun run build && bun x standard-version && npm publish",
+    "test": "bun test"
   },
   "dependencies": {
     "@testing-library/dom": "^9.3.4",
@@ -27,7 +47,9 @@
     "tailwindcss": "^3.4.3"
   },
   "devDependencies": {
-    "typescript": "^5.2.2",
+    "@types/bun": "^1.1.6",
+    "@types/jest": "^29.5.12",
+    "typescript": "^5.5.4",
     "vite": "^5.2.0"
   }
 }
