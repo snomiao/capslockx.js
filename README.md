@@ -7,5 +7,10 @@ Keyboard to Mouse/Caret/Motion controller.
 ## Development
 
 ```
-import 'capslockx.js'
+import from 'capslockx.js'
 ```
+
+## Roadmap
+
+TODO: merge multi ticker
+- [ ] Redesign with StreamAPI

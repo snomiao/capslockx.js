@@ -36,6 +36,9 @@ body > hr {
 kbd {
   @apply flex flex-col;
 }
+kbd.pressed {
+  @apply bg-slate-100;
+}
 kbd span {
   /* @apply; */
 }

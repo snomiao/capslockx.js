@@ -1,7 +1,7 @@
 import { AccModel0D, AccModelOptions } from "./AccModel0D";
 
 export function AccModel2D(
-  onMove: (dx: number, dy: number) => void,
+  onMove: (dx: number, dy: number) => void, // output callback
   opts: AccModelOptions = {},
 ) {
   let { x = 0, y = 0 } = {};

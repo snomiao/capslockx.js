@@ -1,7 +1,7 @@
 export function Ticker<
   Tickable extends { tick: (dt: number) => boolean | void },
 >(model: Tickable) {
-  let { st = 0, id = NaN } = {};
+  let { st = 0, id = null as null | ReturnType<typeof setTimeout> } = {};
   return Object.assign(model, {
     start() {
       if (id) return true;
@@ -18,7 +18,7 @@ export function Ticker<
       id = setTimeout(() => this.ticker(), 7);
     },
     end() {
-      clearTimeout(id), (id = NaN);
+      id && clearTimeout(id), (id = null); 
       return (this.done = true);
     },
     done: true,
