@@ -1,6 +1,6 @@
 {
-  "name": "capslockx",
-  "version": "0.1.4",
+  "name": "capslockx-js",
+  "version": "0.1.5",
   "description": "Keyboard to Mouse/Caret/Motion controller.",
   "keywords": [],
   "homepage": "https://github.com/snomiao/capslockx.js#readme",
