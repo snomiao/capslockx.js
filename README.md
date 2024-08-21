@@ -13,4 +13,5 @@ import from 'capslockx.js'
 ## Roadmap
 
 TODO: merge multi ticker
+
 - [ ] Redesign with StreamAPI
