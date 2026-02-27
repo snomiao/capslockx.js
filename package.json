@@ -7,19 +7,12 @@
   "bugs": {
     "url": "https://github.com/snomiao/capslockx.js/issues"
   },
+  "license": "MIT",
+  "author": "snomiao <snomiao@gmail.com>",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/snomiao/capslockx.js.git"
   },
-  "license": "MIT",
-  "author": "snomiao <snomiao@gmail.com>",
-  "type": "module",
-  "exports": {
-    "import": "./index.js"
-  },
-  "main": "index.js",
-  "module": "index.js",
-  "types": "index.ts",
   "directories": {
     "doc": "docs",
     "example": "examples"
@@ -27,6 +20,13 @@
   "files": [
     "dist"
   ],
+  "type": "module",
+  "main": "index.js",
+  "module": "index.js",
+  "types": "index.ts",
+  "exports": {
+    "import": "./index.js"
+  },
   "scripts": {
     "_build": "tsc && bun build src/index.ts  --outdir=dist",
     "build": "bun build index.ts --outdir=dist && bun build:umd",
@@ -39,7 +39,6 @@
     "test": "bun test"
   },
   "dependencies": {
-    "@biomejs/biome": "^2.3.8",
     "@testing-library/dom": "^9.3.4",
     "@testing-library/user-event": "^14.5.2",
     "autoprefixer": "^10.4.19",

@@ -26,7 +26,7 @@ export function AccModel3D(
       // output int
       const { dx = x | 0, dy = y | 0, dz = z | 0 } = {};
       onMove(dx, dy, dz);
-      (x -= dx), (y -= dy), (z -= dz);
+      ((x -= dx), (y -= dy), (z -= dz));
       // done
       return this.done;
     },

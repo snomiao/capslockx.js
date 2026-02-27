@@ -103,7 +103,7 @@ G = Enter
   CapsLockX(document.querySelector<HTMLElement>("#app")!);
   [...document.querySelectorAll("kbd")].map((kbd) => {
     const desc = keyDescMap[kbd.innerHTML!];
-    kbd.id = kbd.innerHTML!
+    kbd.id = kbd.innerHTML!;
     if (!desc) return;
     const el = Object.assign(document.createElement("span"), {
       innerHTML: desc,
@@ -150,21 +150,19 @@ function CapsLockX(root = document.documentElement) {
     ),
   );
   const mouseControl = Ticker(
-    AccModel2D(
-      (dx = 0, dy = 0) => setMousePos(mousePos.x + dx, mousePos.y + dy),
-      {
-        speed: 2 *
-          Math.max(screen.width, screen.height) /
-          (window.screen.availWidth / (window.visualViewport || DIEAlert('your browser dont support visualViewport')).width),
-        halflife: 30,
-      },
-    ),
+    AccModel2D((dx = 0, dy = 0) => setMousePos(mousePos.x + dx, mousePos.y + dy), {
+      speed:
+        (2 * Math.max(screen.width, screen.height)) /
+        (window.screen.availWidth /
+          (window.visualViewport || DIEAlert("your browser dont support visualViewport")).width),
+      halflife: 30,
+    }),
   );
   const scrollControl = Ticker(
     AccModel2D(
       (dx = 0, dy = 0) => {
         if (document.activeElement) {
-          document.activeElement.scrollBy({ top: dy, behavior: "smooth" })
+          document.activeElement.scrollBy({ top: dy, behavior: "smooth" });
           return;
         }
         document.body.scrollBy({ top: dy, behavior: "smooth" });
@@ -209,14 +207,14 @@ function CapsLockX(root = document.documentElement) {
     y += Math.floor(x / charWidth);
     // then trim x into charWidth;
     x %= charWidth;
-    (caretPos.x = x), (caretPos.y = y);
+    ((caretPos.x = x), (caretPos.y = y));
     return (caretElement.style.transform = `translate3d(${x}em,${y}em,0)`);
   };
 
   let mousePos = { x: 0, y: 0 };
   const mouseElement = document.querySelector("#cursor")! as HTMLDivElement;
   const setMousePos = (x: number, y: number) => {
-    (mousePos.x = x), (mousePos.y = y);
+    ((mousePos.x = x), (mousePos.y = y));
     return (mouseElement.style.transform = `translate3d(${x + 1}px,${y}px,0)`);
   };
 
@@ -234,11 +232,13 @@ function CapsLockX(root = document.documentElement) {
     },
     press: () => {
       clxMode = true;
-      [...document.querySelectorAll('kbd#CapsLockX')].map(kbd => kbd?.classList.add('pressed'))
+      [...document.querySelectorAll("kbd#CapsLockX")].map((kbd) => kbd?.classList.add("pressed"));
     },
     release: () => {
       clxMode = false;
-      ;[...document.querySelectorAll('kbd#CapsLockX')].map(kbd => kbd?.classList.remove('pressed'))
+      [...document.querySelectorAll("kbd#CapsLockX")].map((kbd) =>
+        kbd?.classList.remove("pressed"),
+      );
       caretControl.stop();
       mouseControl.stop();
       scrollControl.stop();
@@ -258,7 +258,7 @@ function CapsLockX(root = document.documentElement) {
   });
 
   return {
-    start() { },
+    start() {},
     end() {
       clxMode = false;
       caretControl.stop();
@@ -270,8 +270,8 @@ function CapsLockX(root = document.documentElement) {
   };
 
   function pressFn(keycode: string) {
-    const id = keycode.replace(/^Key/, '')
-    document.querySelector('kbd#' + id)?.classList.add('pressed')
+    const id = keycode.replace(/^Key/, "");
+    document.querySelector("kbd#" + id)?.classList.add("pressed");
     return Object.assign({
       CapsLock: () => (CapsLockX.press(), "clx on"),
       Space: () => (CapsLockX.press(), "clx on"),
@@ -301,34 +301,34 @@ function CapsLockX(root = document.documentElement) {
   }
 
   function releaseFn(keycode: string) {
-    const id = keycode.replace(/^Key/, '')
-    document.querySelector('kbd#' + id)?.classList.remove('pressed')
+    const id = keycode.replace(/^Key/, "");
+    document.querySelector("kbd#" + id)?.classList.remove("pressed");
     return Object.assign({
       CapsLock: () => (CapsLockX.release(), "clx off"),
       Space: () => (CapsLockX.release(), "clx off"),
       KeyB: () => (CapsLockX.release(), "clx off"),
       // mouse control
-      KeyA: () => clxQ() && (mouseControl.left.release()),
-      KeyD: () => clxQ() && (mouseControl.right.release()),
-      KeyW: () => clxQ() && (mouseControl.up.release()),
-      KeyS: () => clxQ() && (mouseControl.down.release()),
-      KeyE: () => clxQ() && (mouseButton.release()),
+      KeyA: () => clxQ() && mouseControl.left.release(),
+      KeyD: () => clxQ() && mouseControl.right.release(),
+      KeyW: () => clxQ() && mouseControl.up.release(),
+      KeyS: () => clxQ() && mouseControl.down.release(),
+      KeyE: () => clxQ() && mouseButton.release(),
       // KeyQ: () => clxQ() && (mouseButton.secondary.release()),
-      KeyR: () => clxQ() && (scrollControl.up.release()),
-      KeyF: () => clxQ() && (scrollControl.down.release()),
+      KeyR: () => clxQ() && scrollControl.up.release(),
+      KeyF: () => clxQ() && scrollControl.down.release(),
       // caret
-      KeyH: () => clxQ() && (caretControl.left.release()),
-      KeyL: () => clxQ() && (caretControl.right.release()),
-      KeyK: () => clxQ() && (caretControl.up.release()),
-      KeyJ: () => clxQ() && (caretControl.down.release()),
+      KeyH: () => clxQ() && caretControl.left.release(),
+      KeyL: () => clxQ() && caretControl.right.release(),
+      KeyK: () => clxQ() && caretControl.up.release(),
+      KeyJ: () => clxQ() && caretControl.down.release(),
       // page
-      KeyY: () => clxQ() && (pageControl.left.release()),
-      KeyO: () => clxQ() && (pageControl.right.release()),
-      KeyI: () => clxQ() && (pageControl.up.release()),
-      KeyU: () => clxQ() && (pageControl.down.release()),
+      KeyY: () => clxQ() && pageControl.left.release(),
+      KeyO: () => clxQ() && pageControl.right.release(),
+      KeyI: () => clxQ() && pageControl.up.release(),
+      KeyU: () => clxQ() && pageControl.down.release(),
       // tab
-      KeyP: () => clxQ() && (tabModel.up.release()),
-      KeyN: () => clxQ() && (tabModel.down.release()),
+      KeyP: () => clxQ() && tabModel.up.release(),
+      KeyN: () => clxQ() && tabModel.down.release(),
     })[keycode];
   }
 }
@@ -342,9 +342,7 @@ function DispatchTab(step = 1) {
     tabElements[0].focus();
     return;
   }
-  const currentIndex = tabElements.findIndex(
-    (e) => e === document.activeElement,
-  );
+  const currentIndex = tabElements.findIndex((e) => e === document.activeElement);
   const nextIndex = (currentIndex + step) % tabElements.length;
   tabElements[nextIndex].focus();
 }

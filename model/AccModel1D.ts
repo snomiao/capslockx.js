@@ -1,9 +1,6 @@
 import { AccModel0D, AccModelOptions } from "./AccModel0D";
 
-export function AccModel1D(
-  onMove: (dx: number, dy: number) => void,
-  opts: AccModelOptions = {},
-) {
+export function AccModel1D(onMove: (dx: number, dy: number) => void, opts: AccModelOptions = {}) {
   let { x = 0, y = 0 } = {};
   return {
     done: true,
@@ -20,7 +17,7 @@ export function AccModel1D(
       // output
       const { dx = x | 0, dy = y | 0 } = {};
       onMove(dx, dy);
-      (x -= dx), (y -= dy);
+      ((x -= dx), (y -= dy));
       // done
       return this.done;
     },

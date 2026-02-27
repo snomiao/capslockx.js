@@ -8,18 +8,16 @@ export function MouseButtonControl(cursor: { x: number; y: number }) {
   return {
     press(key: MouseButton) {
       if (pressed[key]) return;
-      el ??= ([...document.querySelectorAll("*")] as HTMLElement[])
-        .reverse()
-        .find((e) => {
-          const rect = e.getBoundingClientRect();
-          if (
-            rect.left < cursor.x &&
-            cursor.x < rect.right &&
-            rect.top < cursor.y &&
-            cursor.y < rect.bottom
-          )
-            return true;
-        });
+      el ??= ([...document.querySelectorAll("*")] as HTMLElement[]).reverse().find((e) => {
+        const rect = e.getBoundingClientRect();
+        if (
+          rect.left < cursor.x &&
+          cursor.x < rect.right &&
+          rect.top < cursor.y &&
+          cursor.y < rect.bottom
+        )
+          return true;
+      });
       // press
       pressed[key] = +new Date();
 
@@ -29,7 +27,7 @@ export function MouseButtonControl(cursor: { x: number; y: number }) {
       return true;
     },
     release(key?: MouseButton) {
-      if (!key) return (pressed = {}), (el = undefined);
+      if (!key) return ((pressed = {}), (el = undefined));
       if (el) {
         fireEvent.mouseUp(el, { ...pressed });
         if (pressed[key]) fireEvent.click(el);

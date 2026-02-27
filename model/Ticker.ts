@@ -1,6 +1,4 @@
-export function Ticker<
-  Tickable extends { tick: (dt: number) => boolean | void },
->(model: Tickable) {
+export function Ticker<Tickable extends { tick: (dt: number) => boolean | void }>(model: Tickable) {
   let { st = 0, id = null as null | ReturnType<typeof setTimeout> } = {};
   return Object.assign(model, {
     start() {
@@ -18,7 +16,7 @@ export function Ticker<
       id = setTimeout(() => this.ticker(), 7);
     },
     end() {
-      id && clearTimeout(id), (id = null); 
+      (id && clearTimeout(id), (id = null));
       return (this.done = true);
     },
     done: true,

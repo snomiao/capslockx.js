@@ -23,7 +23,7 @@ export function AccModel2D(
       // output
       const { dx = x | 0, dy = y | 0 } = {};
       onMove(dx, dy);
-      (x -= dx), (y -= dy);
+      ((x -= dx), (y -= dy));
       // done
       return this.done;
     },
